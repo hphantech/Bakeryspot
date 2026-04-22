@@ -23,7 +23,7 @@
 }
 
 .pill-button {
-  @apply rounded-full px-8 py-3 transition-all duration-300 font-bold uppercase tracking-widest text-xs;
+  @apply inline-flex items-center justify-center text-center rounded-full px-8 py-3 transition-all duration-300 font-bold uppercase tracking-widest text-xs leading-none;
 }
 
 .brutal-shadow {
