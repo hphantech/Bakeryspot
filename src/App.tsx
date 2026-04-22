@@ -66,9 +66,15 @@ const EVENT_TYPES = [
   'Privé- workshop'
 ];
 
+const WORKSHOP_VIDEO_SOURCES = [
+  '/Images/Videos/workshop_vlog.mp4',
+  '/Images/Videos/VLOG%20TIME!%20%F0%9F%A5%B3%20Cakeworkshop%20edition%20%F0%9F%92%95%23Vriendinnen%20%23Utrecht%20%23Cakeworkshop%20%23vlog%20%23fyp.mp4'
+];
+
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [videoSourceIndex, setVideoSourceIndex] = useState(0);
   const [currentReview, setCurrentReview] = useState(0);
   const [igFeed, setIgFeed] = useState<InstagramPost[]>([]);
   const [isLoadingFeed, setIsLoadingFeed] = useState(true);
@@ -408,15 +414,22 @@ export default function App() {
             </div>
             <div className="order-1 lg:order-2">
                <div className="aspect-[9/16] max-w-[400px] mx-auto rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl relative group">
-                  <video 
+                  <video
+                    key={WORKSHOP_VIDEO_SOURCES[videoSourceIndex]}
                     controls
                     className="w-full h-full object-cover"
                     poster="/Images/RandomIGposts/Screenshot 2026-04-22 at 16-14-27 Instagram.png"
                     onPlay={() => setIsPlaying(true)}
                     onPause={() => setIsPlaying(false)}
                     onEnded={() => setIsPlaying(false)}
+                    onError={() => {
+                      if (videoSourceIndex < WORKSHOP_VIDEO_SOURCES.length - 1) {
+                        setVideoSourceIndex((prev) => prev + 1);
+                        setIsPlaying(false);
+                      }
+                    }}
                   >
-                    <source src="/Images/Videos/workshop_vlog.mp4" type="video/mp4" />
+                    <source src={WORKSHOP_VIDEO_SOURCES[videoSourceIndex]} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                   {!isPlaying && (

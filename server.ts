@@ -129,6 +129,17 @@ async function startServer() {
     }
   });
 
+  // Serve public directory with full range-request support (required for video playback)
+  // Must be registered before Vite middleware, which lacks Accept-Ranges headers.
+  app.use(express.static(path.join(process.cwd(), "public"), {
+    setHeaders(res, filePath) {
+      if (/\.(mp4|webm|ogg|mov)$/i.test(filePath)) {
+        res.setHeader("Accept-Ranges", "bytes");
+        res.setHeader("Content-Type", "video/mp4");
+      }
+    },
+  }));
+
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
