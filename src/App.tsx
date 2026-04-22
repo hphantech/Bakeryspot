@@ -164,7 +164,7 @@ export default function App() {
       )}
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen md:h-screen flex items-center overflow-hidden pt-20">
+      <section id="home" className="relative min-h-screen md:h-screen flex items-center overflow-hidden pt-32 md:pt-20">
         <motion.div 
           style={{ y: backgroundY }}
           className="absolute inset-0 z-0"
@@ -586,7 +586,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-20">
           <div className="space-y-8">
             <div className="flex items-center gap-4">
-              <img src="/public/Images/Logo.jpg" alt="Logo Footer" className="w-16 h-16 object-contain" />
+              <img src="/Images/Logo.jpg" alt="Logo Footer" className="w-16 h-16 object-contain" />
               <div className="flex flex-col">
                 <span className="font-extrabold text-2xl tracking-tighter uppercase text-story-burgundy leading-none">Bakery Spot</span>
                 <span className="text-[10px] uppercase font-bold tracking-widest italic opacity-50">Cakes and more</span>
